@@ -1,11 +1,11 @@
 <template>
-    
+        
     <template if:true={event}>
         <header class={headerClasses}>
-            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseDetailsModal} if:true={isModal}>
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title={label.close} onclick={handleCloseDetailsModal} if:true={isModal}>
                 <lightning-icon icon-name="utility:close" size="medium" variant="inverse">
                 </lightning-icon>
-                <span class="slds-assistive-text">Close</span>
+                <span class="slds-assistive-text">{label.close}</span>
             </button>
             <div class="titleDiv slds-size--1-of-1">
                 <span role="cccalendarEventIconSpan" class="slds-m-right_small" if:true={event.iconName} aria-hidden="true" tabindex="-1">
@@ -34,8 +34,8 @@
                         <template if:false={hideEventDetailButton}>
                             <div class="linkWrapperDiv">
                                 <a href={event.detailsURL} title={eventDetailButtonTitle} if:true={event.detailsURL}>
-                                    <button title={eventDetailButtonText} aria-hidden="true" tabindex="-1" type="button" class="slds-button slds-button_brand slds-m-right_small slds-m-bottom_small slds-truncate cccalendar_eventButtonSpan">
-                                        {eventDetailButtonText}
+                                    <button title={label.moreinfo} aria-hidden="true" tabindex="-1" type="button" class="slds-button slds-button_brand slds-m-right_small slds-m-bottom_small slds-truncate cccalendar_eventButtonSpan">
+                                        {label.moreinfo}
                                     </button>
                                 </a>
                             </div>
@@ -71,11 +71,11 @@
                 <lightning-layout-item padding="around-small" size="12" large-device-size={eventDetailSectionSize} medium-device-size={eventDetailSectionSize} small-device-size="12">
 
                     <div class={divFormElementClasses} if:true={event.location}>
-                        <label class="slds-form-element__label">Location:</label>
+                        <label class="slds-form-element__label">{label.location}</label>
                         {event.location}
                     </div>
                     <div class={divFormElementClasses} if:true={event.description}>
-                        <label class="slds-form-element__label">Description:</label>
+                        <label class="slds-form-element__label">{label.description}</label>
                         <lightning-formatted-text linkify="true" value={event.description}></lightning-formatted-text>
                         
                     </div>
@@ -89,8 +89,8 @@
                         <template if:false={hideEventDetailButton}>
                             <div class="linkWrapperDiv">
                                 <a href={event.detailsURL} title={eventDetailButtonTitle} if:true={event.detailsURL}>
-                                    <button title={eventDetailButtonText} aria-hidden="true" tabindex="-1" type="button" class="slds-button slds-button_brand slds-m-right_small slds-m-bottom_small slds-truncate cccalendar_eventButtonSpan">
-                                        {eventDetailButtonText}
+                                    <button title={label.moreinfo} aria-hidden="true" tabindex="-1" type="button" class="slds-button slds-button_brand slds-m-right_small slds-m-bottom_small slds-truncate cccalendar_eventButtonSpan">
+                                        {label.moreinfo}
                                     </button>
                                 </a>
                             </div>
@@ -119,7 +119,7 @@
                 
         </div>
         <footer class="slds-modal__footer" if:true={isModal}>
-            <lightning-button label="Close" title="Close"
+            <lightning-button label={label.close} title={label.close}
             onclick={handleCloseDetailsModal} if:true={isModal}></lightning-button>
         </footer>
     </template>

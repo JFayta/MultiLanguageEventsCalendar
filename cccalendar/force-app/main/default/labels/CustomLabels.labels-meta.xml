@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>asi_ReleaseEvent_Location</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>asi_ReleaseEvent_Location</shortDescription>
+        <value>Location:</value>
+    </labels>
+    <labels>
+        <fullName>asi_ReleaseEvent_allday</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>asi_ReleaseEvent_allday</shortDescription>
+        <value>All Day</value>
+    </labels>
+    <labels>
+        <fullName>asi_ReleaseEvent_close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>asi_ReleaseEvent_close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>asi_ReleaseEvent_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>asi_ReleaseEvent_description</shortDescription>
+        <value>Description:</value>
+    </labels>
+    <labels>
+        <fullName>asi_ReleaseEvent_moreinfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>asi_ReleaseEvent_moreinfo</shortDescription>
+        <value>More Info</value>
+    </labels>
+</CustomLabels>

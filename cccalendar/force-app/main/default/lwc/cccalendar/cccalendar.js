@@ -5,9 +5,12 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-import { api, track } from 'lwc';
+import { api, wire, track } from 'lwc';
+import { getRecord } from 'lightning/uiRecordApi';
+import USER_ID from '@salesforce/user/Id';
 import {loadStyle, loadScript} from 'lightning/platformResourceLoader';
 import fullCalendar from '@salesforce/resourceUrl/fullcalendar420';
+import LANGUAGE_FIELD from '@salesforce/schema/User.LanguageLocaleKey';
 import jquery from '@salesforce/resourceUrl/jquery';
 import fetchEvents from '@salesforce/apex/cccalendarController.getEventsWithFrequency';
 import ccBase from 'c/ccbase';
@@ -49,7 +52,30 @@ export default class Cccalendar extends ccBase {
     @track escListener;
     @track selectedViews = [];
 
+    @track error;
+    @track language;
+    @track tzLabel;
+
     allViewsList = ['dayGridMonth','timeGridWeek','timeGridDay','listWeek'];
+
+    @wire(getRecord, {recordId: USER_ID, fields: [LANGUAGE_FIELD]})
+    wireuser({error,data})
+    {
+        if (error)
+        {
+           this.error = error;
+           console.log(error);
+        }
+        else if (data)
+        {
+            this.language = data.fields.LanguageLocaleKey.value;
+            if(this.calendar !== undefined && this.calendar !== null)
+            {
+                this.calendar.destroy();
+                this.renderCalendar();
+            }
+        }
+    }
 
     connectedCallback()
     {
@@ -58,7 +84,7 @@ export default class Cccalendar extends ccBase {
                 'keydown',
                 this.escListener
             );
-
+            
             Promise.all([
                 loadStyle(this, fullCalendar + '/fullcalendar-4.2.0/packages/core/main.min.css'),
                 loadStyle(this, fullCalendar + '/fullcalendar-4.2.0/packages/bootstrap/main.min.css'),
@@ -66,7 +92,8 @@ export default class Cccalendar extends ccBase {
                 loadStyle(this, fullCalendar + '/fullcalendar-4.2.0/packages/timegrid/main.min.css'),
                 loadStyle(this, fullCalendar + '/fullcalendar-4.2.0/packages/list/main.min.css'),
                 this.loadScript(jquery),
-                this.loadScript(fullCalendar + '/fullcalendar-4.2.0/packages/core/main.js')
+                this.loadScript(fullCalendar + '/fullcalendar-4.2.0/packages/core/main.js'),
+                this.loadScript(fullCalendar + '/fullcalendar-4.2.0/packages/core/locales-all.js')
               ]).then(() => {
                 Promise.all([
                     
@@ -90,7 +117,6 @@ export default class Cccalendar extends ccBase {
                             })
                             .then((result) => {
                                 try {
-    
                                     let res = JSON.parse(result);
                                     if(res.error === undefined || res.error === null || res.error.trim() === '')
                                     {
@@ -117,7 +143,7 @@ export default class Cccalendar extends ccBase {
                                     }
     
                                 } catch(err1){
-                                    console.log(err1+'');
+                                    console.log(this.convertErrorToJSONString(err1));
                                     if(this.isInSitePreview())
                                     {
                                         this.showToast('Error', this.convertErrorToJSONString(err1), 'error');
@@ -125,7 +151,7 @@ export default class Cccalendar extends ccBase {
                                 }
                             })
                             .catch((err2) => {
-                                console.log(err2+'');
+                                console.log(this.convertErrorToJSONString(err2));
                                 if(this.isInSitePreview())
                                 {
                                     this.showToast('Error', this.convertErrorToJSONString(err2), 'error');
@@ -176,7 +202,6 @@ export default class Cccalendar extends ccBase {
 
     renderCalendar()
     {
-        
         try {
 
             var eventsJSONObj = this.events;
@@ -190,6 +215,7 @@ export default class Cccalendar extends ccBase {
 
             var isMobile = this.checkMobile();
             this.selectedViews = [];
+            
             for(let i=0;i<this.allViewsList.length;i++)
             {
                 if(this.allViewsList[i] === 'dayGridMonth' && this.hideMonthView === false && isMobile === false)
@@ -320,6 +346,17 @@ export default class Cccalendar extends ccBase {
                 
             });
             
+            if (this.language === 'fr')
+            {
+                calendar.setOption('locale', 'fr');
+                this.tzLabel = 'Choisissez le fuseau horaire';
+            }
+            else
+            {
+                calendar.setOption('locale', 'en');
+                this.tzLabel = 'Choose Timezone';
+            }
+
             this.calendar = calendar;
 
             calendar.render();

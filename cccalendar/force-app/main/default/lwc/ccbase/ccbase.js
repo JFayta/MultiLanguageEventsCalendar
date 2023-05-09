@@ -9,6 +9,7 @@ import { LightningElement, track } from 'lwc';
 import LANG from '@salesforce/i18n/lang';
 import LOCALE from '@salesforce/i18n/locale';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import allday from '@salesforce/label/c.asi_ReleaseEvent_allday';
 
 export default class Ccbase extends LightningElement {
 
@@ -78,34 +79,34 @@ export default class Ccbase extends LightningElement {
             eventInputVar.title = (items[i].Type !== undefined && items[i].Type !== null && items[i].Type.trim() !== '') ? items[i].Type + ': ' : '';
             eventInputVar.title += items[i].Subject;
             eventInputVar.type = items[i].Type;
-            eventInputVar.iconName = (items[i].cccalendar__Event_Icon_Name__c !== undefined && items[i].cccalendar__Event_Icon_Name__c !== null && items[i].cccalendar__Event_Icon_Name__c.trim() !== '') ? items[i].cccalendar__Event_Icon_Name__c : '';
-            eventInputVar.eventURL = (items[i].cccalendar__Event_URL__c !== undefined && items[i].cccalendar__Event_URL__c !== null && items[i].cccalendar__Event_URL__c.trim() !== '') ? items[i].cccalendar__Event_URL__c : '';
-            eventInputVar.eventURLText = (items[i].cccalendar__Event_URL_Text__c !== undefined && items[i].cccalendar__Event_URL_Text__c !== null && items[i].cccalendar__Event_URL_Text__c.trim() !== '') ? items[i].cccalendar__Event_URL_Text__c : '';
-            eventInputVar.eventURLTarget = (items[i].cccalendar__Event_URL_Open_in_Same_Tab__c !== undefined && items[i].cccalendar__Event_URL_Open_in_Same_Tab__c !== null && items[i].cccalendar__Event_URL_Open_in_Same_Tab__c === false) ? '_blank' : '';
-            eventInputVar.eventURL2 = (items[i].cccalendar__Event_URL_2__c !== undefined && items[i].cccalendar__Event_URL_2__c !== null && items[i].cccalendar__Event_URL_2__c.trim() !== '') ? items[i].cccalendar__Event_URL_2__c : '';
-            eventInputVar.eventURLText2 = (items[i].cccalendar__Event_URL_Text_2__c !== undefined && items[i].cccalendar__Event_URL_Text_2__c !== null && items[i].cccalendar__Event_URL_Text_2__c.trim() !== '') ? items[i].cccalendar__Event_URL_Text_2__c : '';
-            eventInputVar.eventURLTarget2 = (items[i].cccalendar__Event_URL_2_Open_in_Same_Tab__c !== undefined && items[i].cccalendar__Event_URL_2_Open_in_Same_Tab__c !== null && items[i].cccalendar__Event_URL_2_Open_in_Same_Tab__c === false) ? '_blank' : '';
-            eventInputVar.eventImageURL = (items[i].cccalendar__Image_URL__c !== undefined && items[i].cccalendar__Image_URL__c !== null && items[i].cccalendar__Image_URL__c.trim() !== '') ? items[i].cccalendar__Image_URL__c : '';
+            eventInputVar.iconName = (items[i].Event_Icon_Name__c !== undefined && items[i].Event_Icon_Name__c !== null && items[i].Event_Icon_Name__c.trim() !== '') ? items[i].Event_Icon_Name__c : '';
+            eventInputVar.eventURL = (items[i].Event_URL__c !== undefined && items[i].Event_URL__c !== null && items[i].Event_URL__c.trim() !== '') ? items[i].Event_URL__c : '';
+            eventInputVar.eventURLText = (items[i].Event_URL_Text__c !== undefined && items[i].Event_URL_Text__c !== null && items[i].Event_URL_Text__c.trim() !== '') ? items[i].Event_URL_Text__c : '';
+            eventInputVar.eventURLTarget = (items[i].Event_URL_Open_in_Same_Tab__c !== undefined && items[i].Event_URL_Open_in_Same_Tab__c !== null && items[i].Event_URL_Open_in_Same_Tab__c === false) ? '_blank' : '';
+            eventInputVar.eventURL2 = (items[i].Event_URL_2__c !== undefined && items[i].Event_URL_2__c !== null && items[i].Event_URL_2__c.trim() !== '') ? items[i].Event_URL_2__c : '';
+            eventInputVar.eventURLText2 = (items[i].Event_URL_Text_2__c !== undefined && items[i].Event_URL_Text_2__c !== null && items[i].Event_URL_Text_2__c.trim() !== '') ? items[i].Event_URL_Text_2__c : '';
+            eventInputVar.eventURLTarget2 = (items[i].Event_URL_2_Open_in_Same_Tab__c !== undefined && items[i].Event_URL_2_Open_in_Same_Tab__c !== null && items[i].Event_URL_2_Open_in_Same_Tab__c === false) ? '_blank' : '';
+            eventInputVar.eventImageURL = (items[i].Image_URL__c !== undefined && items[i].Image_URL__c !== null && items[i].Image_URL__c.trim() !== '') ? items[i].Image_URL__c : '';
             eventInputVar.detailsURL = this.siteUrl + '/' + items[i].Id + timezoneURLParam;
             
-            if(items[i].cccalendar__Calendar_Rendering__c !== undefined && items[i].cccalendar__Calendar_Rendering__c !== null && items[i].cccalendar__Calendar_Rendering__c.trim() !== '')
+            if(items[i].Calendar_Rendering__c !== undefined && items[i].Calendar_Rendering__c !== null && items[i].Calendar_Rendering__c.trim() !== '')
             {
-                eventInputVar.rendering = items[i].cccalendar__Calendar_Rendering__c;
+                eventInputVar.rendering = items[i].Calendar_Rendering__c;
             }
 
-            if(items[i].cccalendar__Calendar_Background_Color__c !== undefined && items[i].cccalendar__Calendar_Background_Color__c !== null && items[i].cccalendar__Calendar_Background_Color__c.trim() !== '')
+            if(items[i].Calendar_Background_Color__c !== undefined && items[i].Calendar_Background_Color__c !== null && items[i].Calendar_Background_Color__c.trim() !== '')
             {
-                eventInputVar.backgroundColor = items[i].cccalendar__Calendar_Background_Color__c;
+                eventInputVar.backgroundColor = items[i].Calendar_Background_Color__c;
             }
 
-            if(items[i].cccalendar__Calendar_Border_Color__c !== undefined && items[i].cccalendar__Calendar_Border_Color__c !== null && items[i].cccalendar__Calendar_Border_Color__c.trim() !== '')
+            if(items[i].Calendar_Border_Color__c !== undefined && items[i].Calendar_Border_Color__c !== null && items[i].Calendar_Border_Color__c.trim() !== '')
             {
-                eventInputVar.borderColor = items[i].cccalendar__Calendar_Border_Color__c;
+                eventInputVar.borderColor = items[i].Calendar_Border_Color__c;
             }
 
-            if(items[i].cccalendar__Calendar_Text_Color__c !== undefined && items[i].cccalendar__Calendar_Text_Color__c !== null && items[i].cccalendar__Calendar_Text_Color__c.trim() !== '')
+            if(items[i].Calendar_Text_Color__c !== undefined && items[i].Calendar_Text_Color__c !== null && items[i].Calendar_Text_Color__c.trim() !== '')
             {
-                eventInputVar.textColor = items[i].cccalendar__Calendar_Text_Color__c;
+                eventInputVar.textColor = items[i].Calendar_Text_Color__c;
             }
 
             eventInputVar.editable = false;
@@ -169,12 +170,12 @@ export default class Ccbase extends LightningElement {
 
                 if(items[i].IsAllDayEvent === true && startDateText === endDateText)
                 {
-                    eventInputVar.subtitleText = startDateText + ' All Day';
+                    eventInputVar.subtitleText = startDateText + ' ' + allday;
                     eventInputVar.allDay = true;
                 }
                 else if(items[i].IsAllDayEvent === true && startDateText !== endDateText)
                 {
-                    eventInputVar.subtitleText = startDateText + ' - ' + endDateText + ' All Day';
+                    eventInputVar.subtitleText = startDateText + ' - ' + endDateText + ' ' + allday;
                     eventInputVar.allDay = true;
                 }
                 else if(items[i].IsAllDayEvent === false && startDateText === endDateText)
@@ -191,12 +192,12 @@ export default class Ccbase extends LightningElement {
             } 
 
            
-           if(items[i].cccalendar__Display_Events_Local_Timezone__c === true && items[i].cccalendar__Local_Timezone__c !== undefined && items[i].cccalendar__Local_Timezone__c !== null && eventInputVar.allDay === false)
+           if(items[i].Display_Events_Local_Timezone__c === true && items[i].Local_Timezone__c !== undefined && items[i].Local_Timezone__c !== null && eventInputVar.allDay === false)
             {
-                var localTimezoneLabel = this.timezoneLabels[items[i].cccalendar__Local_Timezone__c];
-                localTimezoneLabel = (localTimezoneLabel !== undefined && localTimezoneLabel !== null && localTimezoneLabel.trim() !== '') ? localTimezoneLabel : items[i].cccalendar__Local_Timezone__c;
+                var localTimezoneLabel = this.timezoneLabels[items[i].Local_Timezone__c];
+                localTimezoneLabel = (localTimezoneLabel !== undefined && localTimezoneLabel !== null && localTimezoneLabel.trim() !== '') ? localTimezoneLabel : items[i].Local_Timezone__c;
 
-                var eventInputVarLocal= this.buildDateTimeTextInTimezone(items[i], items[i].cccalendar__Local_Timezone__c, LOCALE, '', localTimezoneLabel);
+                var eventInputVarLocal= this.buildDateTimeTextInTimezone(items[i], items[i].Local_Timezone__c, LOCALE, '', localTimezoneLabel);
 
                 if(eventInputVarLocal !== undefined && eventInputVarLocal !== null)
                 {

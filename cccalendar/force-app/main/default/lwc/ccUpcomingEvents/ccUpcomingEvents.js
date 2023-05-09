@@ -55,7 +55,7 @@ export default class CcUpcomingEvents extends ccBase {
                     this.itemsMap = res.eventsMap;
                     this.items = Object.keys(this.itemsMap).map(
                         (key) => {
-                            this.itemsMap[key].cccalendar__Image_URL__c = undefined;
+                            this.itemsMap[key].Image_URL__c = undefined;
                             return this.itemsMap[key];
                         }).reverse();
 
@@ -107,7 +107,7 @@ export default class CcUpcomingEvents extends ccBase {
             this.timezone = e.detail.timezone;
             this.items = Object.keys(this.itemsMap).map(
                 (key) => {
-                    this.itemsMap[key].cccalendar__Image_URL__c = undefined;
+                    this.itemsMap[key].Image_URL__c = undefined;
                     return this.itemsMap[key];
                 }).reverse();
             this.populateCalendarEvents(this.items);

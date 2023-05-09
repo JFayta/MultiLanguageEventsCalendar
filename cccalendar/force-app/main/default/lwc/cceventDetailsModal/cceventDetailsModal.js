@@ -5,9 +5,17 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
+import location    from '@salesforce/label/c.asi_ReleaseEvent_location';
+import description from '@salesforce/label/c.asi_ReleaseEvent_description';
+import close       from '@salesforce/label/c.asi_ReleaseEvent_close';
+import moreinfo    from '@salesforce/label/c.asi_ReleaseEvent_moreinfo';
+
+asi_ReleaseEvent_moreinfo
 import { LightningElement, api, track } from 'lwc';
 
 export default class CceventDetailsModal extends LightningElement {
+
+    label = {location, description, close, moreinfo};
 
     @api event;
 

@@ -31,7 +31,7 @@
                             
                             <a href={event.detailsURL} if:true={event.detailsURL}>
                                 <button title="More Info" type="button" class="slds-button slds-button_brand slds-m-right_small slds-m-bottom_small">
-                                    <span class="slds-truncate cccalendar_eventButtonSpan">More Info</span>
+                                    <span class="slds-truncate cccalendar_eventButtonSpan">{label.moreinfo}</span>
                                 </button>
                             </a>
 
@@ -59,11 +59,11 @@
                     <lightning-layout-item padding="around-small" size="12" large-device-size={eventDetailSectionSize} medium-device-size={eventDetailSectionSize} small-device-size="12">
 
                         <div class="slds-form-element" if:true={event.location}>
-                            <label class="slds-form-element__label">Location:</label>
+                            <label class="slds-form-element__label">{label.location}</label>
                             {event.location}
                         </div>
                         <div class="slds-form-element" if:true={event.description}>
-                            <label class="slds-form-element__label">Description:</label>
+                            <label class="slds-form-element__label">{label.description}</label>
                             <lightning-formatted-text linkify="true" value={event.description}></lightning-formatted-text>
                             
                         </div>
@@ -73,7 +73,7 @@
                     
             </div>
             <footer class="slds-modal__footer">
-                <lightning-button label="Close" title="Close"
+                <lightning-button label={label.close} title="Close"
                 onclick={handleCloseDetailsModal}></lightning-button>
             </footer>
         </div>

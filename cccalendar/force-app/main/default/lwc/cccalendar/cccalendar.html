@@ -5,7 +5,7 @@
         <div class="slds-m-bottom_large" if:false={hideTimezonePicklist}>
             <lightning-combobox
                         name="timezones"
-                        label="Choose Timezone"
+                        label={tzLabel}
                         value={timezone}
                         placeholder="Choose Timezone"
                         options={timezoneObjList}
@@ -19,7 +19,6 @@
     <div data-id='calendar' lwc:dom="manual"></div>
 
     <template if:true={eventDetailsModalOpen}>
-
         <div class="modalContainer">
             <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" class="slds-modal slds-fade-in-open">
                 <div class="slds-modal__container cccalendar_slds-modal__container">

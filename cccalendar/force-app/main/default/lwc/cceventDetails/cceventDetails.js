@@ -9,15 +9,19 @@ import { LightningElement, api, track } from 'lwc';
 import Cccalendar from 'c/cccalendar';
 import ccBase from 'c/ccbase';
 import fetchEvents from '@salesforce/apex/cccalendarController.getEvents';
+import location    from '@salesforce/label/c.asi_ReleaseEvent_location';
+import description from '@salesforce/label/c.asi_ReleaseEvent_description';
+import close       from '@salesforce/label/c.asi_ReleaseEvent_close';
+import moreinfo    from '@salesforce/label/c.asi_ReleaseEvent_moreinfo';
 
 export default class CceventDetails extends ccBase {
-
+    
     @api event;
     @api isModal = false;
     @api recordId;
     @api timezoneLabelsJSON = '';
     @api hideEventDetailButton = false;
-    @api eventDetailButtonText = 'More Info';
+    @api eventDetailButtonText = moreinfo;
     @api truncate = false;
     @api truncateEachLine = false;
     @api truncateNumberOfLinesToDisplay = 3;
@@ -26,6 +30,8 @@ export default class CceventDetails extends ccBase {
 
     @track cccalendarEventIconSpanStylesSet = false;
     @track divTruncateEntireContentBlockStylesSet = false;
+
+    label = {location, description, close, moreinfo};
 
     @api 
     get eventDetailSectionSize()
@@ -84,6 +90,7 @@ export default class CceventDetails extends ccBase {
         tmpTitle += (this.event !== undefined && this.event.title !== undefined && this.event.title !== null 
             && this.event.title.trim() !== '' ) ? this.event.title : '' ;
 
+        console.log('Title: ' + tmpTitle);
         return tmpTitle;
     }
 

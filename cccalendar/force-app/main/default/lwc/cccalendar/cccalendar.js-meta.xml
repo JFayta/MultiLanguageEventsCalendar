@@ -2,8 +2,8 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>48.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>Calendar for Experience Cloud</masterLabel>
-    <description>Calendar for Experience Cloud</description>
+    <masterLabel>Language Calendar for Experience Cloud</masterLabel>
+    <description>Language Calendar for Experience Cloud</description>
     <capabilities>
         <capability>lightningCommunity__RelaxedCSP</capability>
     </capabilities>
